@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .container {
     display: flex;
     justify-content: center;
@@ -72,4 +73,80 @@
     background-repeat: no-repeat;
     background-position: center center;
     height: 350px;
+=======
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container .card {
+    position: relative;
+    width: 280px;
+    height: 350px;
+    margin: 30px;
+}
+
+.container .card:nth-of-type(2) {
+    transform: rotate(5deg);
+}
+
+.container .card .image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    transform: translate(10px, 10px);
+}
+
+.container .card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 255px;
+    height: 325px;
+    border: 25px solid #fff;
+    z-index: 1;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 7px 7px 21px #bdbdbd, -7px -7px 21px #ffffff;
+    background: transparent;
+}
+
+.container .card:nth-of-type(1)::before {
+    filter: url(#wavy2);
+}
+
+.container .card:nth-of-type(2)::before {
+    filter: url(#wavy2);
+}
+
+.container .card:nth-of-type(3)::before {
+    filter: url(#wavy2);
+}
+
+.image1 {
+    background-image: url("https://staticg.sportskeeda.com/editor/2022/11/e1a1a-16678856859444-1920.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 350px;
+}
+
+.image2 {
+    background-image: url("https://staticg.sportskeeda.com/editor/2022/09/4fa91-16625652391594-1920.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 350px;
+}
+
+.image3 {
+    background-image: url("https://i.redd.it/s9fs96bfpj891.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 350px;
+>>>>>>> a0af1598e0d8976d52b031720a5693ef0f928062
 }

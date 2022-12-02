@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 section {
     margin: auto;
     width: 60%;
@@ -14,4 +15,22 @@ table {
     text-align: center;
     width: 100%;
     background-color: whitesmoke
+=======
+section {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+
+}
+
+table {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    background-color: whitesmoke
+>>>>>>> a0af1598e0d8976d52b031720a5693ef0f928062
 }

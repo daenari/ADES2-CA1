@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 
 <head>
@@ -92,4 +93,100 @@
     </script>
 </body>
 
+=======
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+    <link href="/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <link href="./index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <a href="/">Home</a>
+        <a href="/create">Create New Expense</a>
+        <a href="/delete">Delete Expense</a>
+        <a href="/update">Update Expense</a>
+        <a class="active" href="/show">Show Expenses</a>
+
+    </header>
+    <section>
+        <div>
+            <h1>Show All Expenses</h1>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Date & Time</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseList">
+                    <tr>
+                        <td>1</td>
+                        <td>Food</td>
+                        <td>$30</td>
+                        <td>28/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Transport</td>
+                        <td>$3</td>
+                        <td>28/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Games</td>
+                        <td>$9</td>
+                        <td>28/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Games</td>
+                        <td>$5</td>
+                        <td>29/11/2022</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Snacks</td>
+                        <td>$20</td>
+                        <td>29/11/2022</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        const expenseHTML = document.querySelector('expenseList');
+        fetch('/expenses/all')
+            .then((response) => {
+                //console.log(response);
+                response.json();
+            })
+            .then((data) => {
+                data.forEach((item) => {
+                    console.log(item.description)
+                    expenseHTML.innerHTML +=
+                        `
+                    <tr>
+                        <td>${item.id}<td>
+                        <td>${item.description}<td>
+                        <td>$${item.price}<td>
+                        <td>${item.datetime}<td>
+                    </tr>
+                    `
+                })
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+
+    </script>
+</body>
+
+>>>>>>> a0af1598e0d8976d52b031720a5693ef0f928062
 </html>
