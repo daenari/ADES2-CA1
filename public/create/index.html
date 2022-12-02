@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+    <link href="/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <link href="./index.css" rel="stylesheet" />
+    <script src="./index.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <header>
+        <a href="/">Home</a>
+        <a class="active" href="/create">Create New Expense</a>
+        <a href="/delete">Delete Expense</a>
+        <a href="/update">Update Expense</a>
+        <a href="/show">Show Expenses</a>
+
+    </header>
+    <section>
+        <div>
+            <h1>Create Expense</h1>
+            <form>
+                <fieldset>
+                    <p>
+                        <label>Description</label>
+                        <input type="textarea" class="textbox" name="description" rows="4" cols="50" required />
+                    </p>
+                    <p>
+                        <label>Price</label>
+                        <input type="number" name="price" min="0" placeholder="0" step="0.01" required />
+                    </p>
+                </fieldset>
+                <div class="button-align">
+                    <button type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>
