@@ -42,17 +42,23 @@ function showExpense() {
 showExpense();
 
 function deleteExpense(id) {
-    fetch('/expenses/' + id, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then(function (response) {
-            if (response.status !== 201) return response.json();
-            alert(`Expense deleted!`)
-            return;
+    var text = confirm("Are you sure you want to delete?")
+
+    if (text == true) {
+        fetch('/expenses/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
+            .then(function (response) {
+                if (response.status !== 201) return response.json();
+                alert(`Expense deleted!`)
+                return;
+            })
+    } else {
+        //do nothing
+    }
 }
 
 

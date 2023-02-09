@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 Input.forEach((input) => {
                     if (input.type !== 'submit') input.value = '';
                 });
-                alert(`Expense updated!`)
+                alert(`Category updated!`)
                 return;
             })
             .then(function (body) {

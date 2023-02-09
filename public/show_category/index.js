@@ -37,29 +37,30 @@ function showCategory() {
 showCategory();
 
 function deleteCategory(id) {
-    fetch('/categories/' + id, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then(function (response) {
-            let text = 'Are you sure you want to delete?'
-            if (confirm(text) == true) {
-                // if (response.status !== 201) return response.json();
-                alert('Expense deleted!')
-                response.json();
-            } else {
-                return;
-            }
+    var text = confirm("Are you sure you want to delete?")
+
+    if (text == true) {
+        fetch('/categories/' + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
+            .then(function (response) {
+                if (response.status !== 201) return response.json();
+                alert('Category deleted!')
+                return;
+            })
+    } else {
+        //do nothing
+    }
 }
 
 
 function searchItem() {
     var input = document.getElementById('search');
     var filter = input.value.toUpperCase();
-    var table = document.getElementById('expenseList')
+    var table = document.getElementById('categoryList')
     var tr = table.getElementsByTagName('tr');
 
     for (i = 0; i < tr.length; i++) {

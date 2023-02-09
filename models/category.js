@@ -33,3 +33,16 @@ module.exports.updateCategory = function updateCategory(name, id) {
 
     })
 }
+
+module.exports.showCount = function showCount() {
+    const sql = `SELECT COUNT(c.id), name FROM categories c INNER JOIN expenses e where c.id = e.category_id group by name`
+    return query(sql).then(function (result) {
+        var count = [];
+        console.log('count:', result[0]);
+        result[0].forEach(function (row) {
+            count.push({ id: row.id, name: row.name });
+        })
+
+        return count;
+    })
+}

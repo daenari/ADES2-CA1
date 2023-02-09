@@ -124,4 +124,16 @@ app.put('/categories/:id', function (req, res, next) {
         })
 })
 
+
+app.get('/categories/count', function (req, res, next) {
+    categoryModel.showCount()
+        .then((response) => {
+            console.log('category count:', response)
+            res.send(response);
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+});
+
 module.exports = app;
