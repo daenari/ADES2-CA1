@@ -9,24 +9,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
         const id = urlParams.get('id');
         //const id = document.querySelector('input[name=id]').value;
-        const description = document.querySelector('input[name=description]').value;
-        const price = document.querySelector('input[name=price]').value;
-        const category_id = document.querySelector('#categoryList').value;
-        const happened_at = document.querySelector('input[name=happened_at]').value
-        const updated_at = document.querySelector('input[name=happened_at]').value
+        const name = document.querySelector('input[name=name]').value;
         const Input = document.querySelectorAll('input, button[type=submit]');
 
-        fetch('/expenses/' + id, {
+        fetch('/categories/' + id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                description: description,
-                amount: price,
-                category_id: category_id,
-                happened_at: happened_at,
-                updated_at: updated_at
+                name: name,
             })
         })
             .then(function (response) {

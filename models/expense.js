@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 const { query } = require('../database');
 
-module.exports.create = function create(description, price) {
-    const sql = `INSERT INTO expenses (description, price) VALUES (?, ?)`;
-    return query(sql, [description, price]).then(function (result) {
+module.exports.create = function create(description, amount, category_id, happened_at) {
+    const sql = `INSERT INTO expenses (description, amount, category_id, happened_at) VALUES (?, ?, ?, ?)`;
+    return query(sql, [description, amount, category_id, happened_at]).then(function (result) {
         return result;
     });
 };
@@ -16,9 +15,9 @@ module.exports.deleteByID = function deleteByID(id) {
 
 };
 
-module.exports.updateByID = function updateByID(description, price, id) {
-    const sql = `UPDATE expenses SET description = ?, price = ? where id = ?`
-    return query(sql, [description, price, id]).then(function (result) {
+module.exports.updateByID = function updateByID(description, amount, category_id, happened_at, updated_at, id) {
+    const sql = `UPDATE expenses SET description = ?, amount = ?, category_id = ?, happened_at = ?, updated_at = ? WHERE id = ?`
+    return query(sql, [description, amount, category_id, happened_at, updated_at, id]).then(function (result) {
         return result;
 
     })
@@ -26,43 +25,20 @@ module.exports.updateByID = function updateByID(description, price, id) {
 
 
 module.exports.retrieveAll = function retrieveAll() {
-    const sql = `SELECT * from expenses`
+    const sql = `SELECT id, description, amount, category_id, happened_at, created_at, updated_at from expenses`
     return query(sql).then(result => {
-        //console.log('result:', result)
-        return result;
-    })
-=======
-const { query } = require('../database');
-
-module.exports.create = function create(description, price) {
-    const sql = `INSERT INTO expenses (description, price) VALUES (?, ?)`;
-    return query(sql, [description, price]).then(function (result) {
-        return result;
-    });
-};
-
-module.exports.deleteByID = function deleteByID(id) {
-    const sql = `DELETE FROM expenses WHERE id = ?`;
-    return query(sql, [id]).then(function (result) {
-        return result;
-    });
-
-};
-
-module.exports.updateByID = function updateByID(description, price, id) {
-    const sql = `UPDATE expenses SET description = ?, price = ? where id = ?`
-    return query(sql, [description, price, id]).then(function (result) {
-        return result;
-
+        var exp_arr = [];
+        result[0].forEach(function (row) {
+            exp_arr.push({ id: row.id, description: row.description, amount: row.amount, category_id: row.category_id, happened_at: row.happened_at, created_at: row.created_at, updated_at: row.updated_at });
+        })
+        return exp_arr;
     })
 };
 
 
-module.exports.retrieveAll = function retrieveAll() {
-    const sql = `SELECT * from expenses`
-    return query(sql).then(result => {
-        //console.log('result:', result)
-        return result;
+module.exports.filterBy = function filterBy(happened_at) {
+    const sql = `SELECT id, description, amount, category_id, happened_at, created_at, updated_at from expenses where happened_at BETWEEN '?' AND '?'`
+    return query(sql, [happened_at]).then(result => {
+
     })
->>>>>>> a0af1598e0d8976d52b031720a5693ef0f928062
-};
+}

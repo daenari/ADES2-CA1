@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 const express = require('express');
 const expenseModel = require('./models/expense');
+const categoryModel = require('./models/category');
 
 const app = express();
 app.use(express.json()); // to process JSON in request body
@@ -9,10 +9,13 @@ app.use(express.static('public'));
 
 app.post('/expenses', function (req, res, next) {
     const description = req.body.description;
-    const price = req.body.price;
+    const amount = req.body.amount;
+    const category_id = req.body.category_id;
+    const happened_at = req.body.happened_at;
+    //date = JSON.stringify(happened_at);
 
     return expenseModel //get query
-        .create(description, price,) //query method
+        .create(description, amount, category_id, happened_at) //query method
         .then(function () {
             return res.sendStatus(201);
         })
@@ -40,10 +43,13 @@ app.delete('/expenses/:id', function (req, res, next) {
 app.put('/expenses/:id', function (req, res, next) {
     const id = req.params.id;
     const description = req.body.description;
-    const price = req.body.price;
+    const amount = req.body.amount;
+    const category_id = req.body.category_id;
+    const happened_at = req.body.happened_at;
+    const updated_at = req.body.updated_at;
 
     return expenseModel //get query
-        .updateByID(description, price, id) //query method
+        .updateByID(description, amount, category_id, happened_at, updated_at, id) //query method
         .then(function () {
             return res.sendStatus(201);
         })
@@ -54,32 +60,32 @@ app.put('/expenses/:id', function (req, res, next) {
 });
 
 app.get('/expenses/all', function (req, res, next) {
-    return expenseModel //get query 
-        .retrieveAll() //query method
+    expenseModel.retrieveAll() //query method
         .then((response) => {
-            //console.log('response:', response)
-            return response
+            console.log('expense response:', response)
+            res.send(response)
         })
         .catch(function (error) {
             console.log(error)
         })
 });
 
-=======
-const express = require('express');
-const expenseModel = require('./models/expense');
+app.get('/categories', function (req, res, next) {
+    categoryModel.retrieveAllCategory()
+        .then((response) => {
+            console.log('category response:', response)
+            res.send(response);
+        })
+        .catch(function (error) {
+            console.log(error)
+        })
+});
 
-const app = express();
-app.use(express.json()); // to process JSON in request body
+app.post('/categories/create', function (req, res, next) {
+    const name = req.body.name;
 
-app.use(express.static('public'));
-
-app.post('/expenses', function (req, res, next) {
-    const description = req.body.description;
-    const price = req.body.price;
-
-    return expenseModel //get query
-        .create(description, price,) //query method
+    return categoryModel
+        .createCategory(name) //query method
         .then(function () {
             return res.sendStatus(201);
         })
@@ -87,14 +93,13 @@ app.post('/expenses', function (req, res, next) {
             console.error(error);
             return res.status(500).json({ error: 'Unknown Error' });
         });
-});
+})
 
-
-app.delete('/expenses/:id', function (req, res, next) {
+app.delete('/categories/:id', function (req, res, next) {
     const id = req.params.id;
 
-    return expenseModel //get query
-        .deleteByID(id) //query method
+    return categoryModel //get query
+        .deleteCategory(id) //query method
         .then(function () {
             return res.sendStatus(201);
         })
@@ -102,15 +107,14 @@ app.delete('/expenses/:id', function (req, res, next) {
             console.log(error);
             return res.status(500).json({ error: 'Unknown Error!' });
         });
-});
+})
 
-app.put('/expenses/:id', function (req, res, next) {
+app.put('/categories/:id', function (req, res, next) {
     const id = req.params.id;
-    const description = req.body.description;
-    const price = req.body.price;
+    const name = req.body.name;
 
-    return expenseModel //get query
-        .updateByID(description, price, id) //query method
+    return categoryModel
+        .updateCategory(name, id)
         .then(function () {
             return res.sendStatus(201);
         })
@@ -118,19 +122,6 @@ app.put('/expenses/:id', function (req, res, next) {
             console.log(error)
             return res.status(500).json({ error: 'Unknown Error!' });
         })
-});
+})
 
-app.get('/expenses/all', function (req, res, next) {
-    return expenseModel //get query 
-        .retrieveAll() //query method
-        .then((response) => {
-            //console.log('response:', response)
-            return response
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
-});
-
->>>>>>> a0af1598e0d8976d52b031720a5693ef0f928062
 module.exports = app;

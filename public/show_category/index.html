@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+    <link href="/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <link href="./index.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="./index.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <header>
+        <a href="/">Home</a>
+        <a href="/create">Create New Expense</a>
+        <a href="/create_category">Create New Category</a>
+        <a href="/show">Show Expenses</a>
+        <a class="active" href="/show_category">Show Categories</a>
+
+    </header>
+    <section>
+        <div>
+            <h1>Show All Categories</h1>
+            <div class="col-md-3">
+
+                <input class="searchBar" id="search" type="text" onkeyup="searchItem()" placeholder="Search..">
+
+            </div><br>
+
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="categoryList">
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+
+
+    </script>
+
+</body>
+
+</html>

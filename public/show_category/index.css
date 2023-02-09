@@ -16,17 +16,7 @@ table {
     background-color: whitesmoke
 }
 
-label {
-    display: inline-block;
-    width: 150px;
-    text-align: right;
-}
-
-input {
-    border: 1px solid #D6D6E7;
-}
-
 .searchBar {
     display: inline-block;
-    margin-left: 300px;
+    margin-left: 750px;
 }

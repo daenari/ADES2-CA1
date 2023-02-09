@@ -1,6 +1,6 @@
-function showExpense() {
+function showCategory() {
 
-    fetch('/expenses/all',
+    fetch('/categories',
         {
             method: 'GET',
             headers: {
@@ -18,18 +18,13 @@ function showExpense() {
                     table += ` 
                     <tr>
                         <td>${item.id}</td>
-                        <td>${item.description}</td>
-                        <td>${item.amount}</td>
-                        <td>${item.category_id}</td>
-                        <td>${item.happened_at}</td>
-                        <td>${item.created_at}</td>
-                        <td>${item.updated_at}</td>
-                        <td><a href='/update/?id=${item.id}'>Edit</a></td>
-                        <td><button type="button" class="btn btn-default" onclick="deleteExpense(${item.id})">Delete</button></td>
+                        <td>${item.name}</td>
+                        <td><a href='/update_category/?id=${item.id}'>Edit</a></td>
+                        <td><button type="button" class="btn btn-default" onclick="deleteCategory(${item.id})">Delete</button></td>
                     </tr>`
 
                 }
-                document.getElementById("expenseList").innerHTML += table
+                document.getElementById("categoryList").innerHTML += table
             }
 
 
@@ -39,19 +34,24 @@ function showExpense() {
         })
 };
 
-showExpense();
+showCategory();
 
-function deleteExpense(id) {
-    fetch('/expenses/' + id, {
+function deleteCategory(id) {
+    fetch('/categories/' + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
     })
         .then(function (response) {
-            if (response.status !== 201) return response.json();
-            alert(`Expense deleted!`)
-            return;
+            let text = 'Are you sure you want to delete?'
+            if (confirm(text) == true) {
+                // if (response.status !== 201) return response.json();
+                alert('Expense deleted!')
+                response.json();
+            } else {
+                return;
+            }
         })
 }
 
