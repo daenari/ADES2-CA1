@@ -25,7 +25,8 @@ module.exports.updateByID = function updateByID(description, amount, category_id
 
 
 module.exports.retrieveAll = function retrieveAll() {
-    const sql = `SELECT e.id, e.description, e.amount, e.happened_at, e.created_at, e.updated_at, c.name as category_id from expenses e JOIN categories c on c.id = e.category_id`
+    const sql = `SELECT id, description, amount, category_id, happened_at, created_at, updated_at from expenses`
+    //const sql = `SELECT e.id, e.description, e.amount, e.happened_at, e.created_at, e.updated_at, c.name as category_id from expenses e JOIN categories c on c.id = e.category_id`
     return query(sql).then(result => {
         var exp_arr = [];
         result[0].forEach(function (row) {

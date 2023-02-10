@@ -30,6 +30,11 @@
                 To: <input id="endDate" type="date">
                 <button id="filter">Filter</button>
 
+                <label>Category:</label>
+                <select name="category" id="categoryList" onChange="categoryFilter()" class="category">
+                    <option value="">Select Category</option>
+                </select>
+
                 <input class="searchBar" id="search" type="text" onkeyup="searchItem()" placeholder="Search by Desc..">
 
             </div><br>
@@ -83,6 +88,24 @@
                 alert("Please select a date");
             }
         });
+
+        function categoryFilter() {
+            var option = document.getElementById('categoryList').value;
+
+            for (i = 0; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName("td")[3];
+
+                if (td) {
+                    var txtValue = td.innerText;
+                    if (txtValue.indexOf(option) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none"
+                    }
+                }
+            }
+
+        }
     </script>
 
 </body>

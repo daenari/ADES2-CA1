@@ -83,3 +83,31 @@ function searchItem() {
 
 }
 
+function showCategory() {
+    fetch('/categories', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }).then(function (response) {
+        return response.json()
+    }).then(data => {
+        category = data;
+        var option = "";
+        if (data != null && data != "") {
+            for (i = 0; i < data.length; i++) {
+                var item = data[i];
+                option += ` 
+                <option value="${item.id}">${item.name}</option>
+            `
+
+            }
+            document.getElementById("categoryList").innerHTML += option
+        }
+    })
+        .catch(function (error) {
+            console.log(error)
+        })
+}
+showCategory();
+
