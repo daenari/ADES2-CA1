@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 function showExpense() {
 
     fetch('/expenses/all',
@@ -37,7 +39,7 @@ function showExpense() {
         .catch((err) => {
             console.log(err)
         })
-};
+}
 
 showExpense();
 

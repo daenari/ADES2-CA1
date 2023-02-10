@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 function showCategory() {
 
     fetch('/categories',
@@ -32,7 +34,7 @@ function showCategory() {
         .catch((err) => {
             console.log(err)
         })
-};
+}
 
 showCategory();
 
@@ -77,4 +79,3 @@ function searchItem() {
     }
 
 }
-

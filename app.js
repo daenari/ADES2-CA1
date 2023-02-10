@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const expenseModel = require('./models/expense');
 const categoryModel = require('./models/category');
